@@ -42,7 +42,7 @@ matrix:
       before_script:
         - pip2 install six
         - curl https://storage.googleapis.com/flutter_infra/releases/stable/macos/flutter_macos_v1.12.13+hotfix.5-stable.zip -o flutter_macos_v1.12.13+hotfix.5-stable.zip
-        - unzip flutter_macos_v1.12.13+hotfix.5-stable.zip
+        - unzip -qq flutter_macos_v1.12.13+hotfix.5-stable.zip
       script:
         - ./flutter/bin/flutter -v build ios --no-codesign
 
