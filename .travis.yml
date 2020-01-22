@@ -28,7 +28,7 @@ matrix:
             - libstdc++6
             - fonts-droid
       before_script:
-        - wget http://services.gradle.org/distributions/gradle-3.5-bin.zip
+        - wget https://downloads.gradle-dn.com/distributions/gradle-3.5-bin.zip
         - unzip -qq gradle-3.5-bin.zip
         - export GRADLE_HOME=$PWD/gradle-3.5
         - export PATH=$GRADLE_HOME/bin:$PATH
@@ -40,7 +40,7 @@ matrix:
       language: generic
       osx_image: xcode8.3
       before_script:
-        - pip install six
+        - pip3 install six
         - brew update
         - brew install --HEAD libimobiledevice
         - brew install ideviceinstaller
