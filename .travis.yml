@@ -43,7 +43,6 @@ matrix:
         - pip2 install six
         - curl https://storage.googleapis.com/flutter_infra/releases/stable/macos/flutter_macos_v1.12.13+hotfix.5-stable.zip -o flutter_macos_v1.12.13+hotfix.5-stable.zip
         - unzip flutter_macos_v1.12.13+hotfix.5-stable.zip
-        - git clone https://github.com/flutter/flutter.git -b stable --depth 1
       script:
         - ./flutter/bin/flutter -v build ios --no-codesign
 
