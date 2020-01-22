@@ -41,8 +41,8 @@ matrix:
       osx_image: xcode11.3
       before_script:
         - pip2 install six
-        - [ ! -d "/path/to/dir" ] && curl https://storage.googleapis.com/flutter_infra/releases/stable/macos/flutter_macos_v1.12.13+hotfix.5-stable.zip -o flutter_macos_v1.12.13+hotfix.5-stable.zip
-        - [ ! -d "/path/to/dir" ] && unzip -qq flutter_macos_v1.12.13+hotfix.5-stable.zip
+        - [ ! -d "flutter" ] && curl https://storage.googleapis.com/flutter_infra/releases/stable/macos/flutter_macos_v1.12.13+hotfix.5-stable.zip -o flutter_macos_v1.12.13+hotfix.5-stable.zip
+        - [ ! -d "flutter" ] && unzip -qq flutter_macos_v1.12.13+hotfix.5-stable.zip
         - export PATH="$PATH:`pwd`/flutter/bin"
       script:
         - ./flutter/bin/flutter -v build ios --no-codesign
