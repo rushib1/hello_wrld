@@ -48,5 +48,4 @@ matrix:
 
 cache:
   directories:
-    - flutter
     - $HOME/.pub-cache
