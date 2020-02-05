@@ -57,7 +57,7 @@ matrix:
       before_script:
         - bash scripts/install_flutter.sh
       script:
-        - ./flutter/bin/flutter build apk --debug
+        - ./flutter/bin/flutter build apk --release
       after_script:
         - ruby scripts/upload_to_s3.rb
 
