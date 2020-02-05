@@ -26,8 +26,8 @@ end
 
 
 
-# apk_path = "#{ENV.fetch('TRAVIS_BUILD_DIR')}/build/app/outputs/apk/release/app-release.apk"
-apk_path = "../elastic_search.js"
+apk_path = "#{ENV.fetch('TRAVIS_BUILD_DIR')}/build/app/outputs/apk/release/app-release.apk"
+# apk_path = "../elastic_search.js"
 puts "Uploading apk from #{apk_path}"
 form_data.push(['file', File.open(apk_path)])
 request.set_form form_data, 'multipart/form-data'
