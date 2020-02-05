@@ -1,33 +1,68 @@
 
+# matrix:
+#   include:
+#     - os: linux
+#       language: android
+#       licenses:
+#         - 'android-sdk-preview-license-.+'
+#         - 'android-sdk-license-.+'
+#         - 'google-gdk-license-.+'
+#       android:
+#         components:
+#           - build-tools-28.0.3
+#           - android-28
+#           - add-on
+#           - extra
+#       before_script:
+#         - git clone https://github.com/flutter/flutter.git -b stable --depth 1
+#       script:
+#         - ./flutter/bin/flutter build apk
+
+#     - os: osx
+#       language: generic
+#       osx_image: xcode11.3
+#       before_script:
+#         - 'if [ ! -d "flutter/bin/" ]; then curl https://storage.googleapis.com/flutter_infra/releases/stable/macos/flutter_macos_v1.12.13+hotfix.5-stable.zip -o flutter_macos_v1.12.13+hotfix.5-stable.zip; fi'
+#         - 'if [ ! -d "flutter/bin/" ]; then unzip -qq flutter_macos_v1.12.13+hotfix.5-stable.zip; fi'
+#         - export PATH="$PATH:`pwd`/flutter/bin"
+#       script:
+#         - ./flutter/bin/flutter build ios --no-codesign
+
+# cache:
+#   directories:
+#     - $HOME/.pub-cache
+
+
+branches:
+  only:
+    - travis
+
 matrix:
   include:
     - os: linux
-      language: android
+      lanugage: android
       licenses:
         - 'android-sdk-preview-license-.+'
         - 'android-sdk-license-.+'
         - 'google-gdk-license-.+'
+      rvm:
+        - 2.7
       android:
         components:
           - build-tools-28.0.3
           - android-28
+          - android-27
           - add-on
           - extra
       before_script:
-        - git clone https://github.com/flutter/flutter.git -b stable --depth 1
+        - bash scripts/install_flutter.sh
       script:
-        - ./flutter/bin/flutter build apk
-
-    - os: osx
-      language: generic
-      osx_image: xcode11.3
-      before_script:
-        - 'if [ ! -d "flutter/bin/" ]; then curl https://storage.googleapis.com/flutter_infra/releases/stable/macos/flutter_macos_v1.12.13+hotfix.5-stable.zip -o flutter_macos_v1.12.13+hotfix.5-stable.zip; fi'
-        - 'if [ ! -d "flutter/bin/" ]; then unzip -qq flutter_macos_v1.12.13+hotfix.5-stable.zip; fi'
-        - export PATH="$PATH:`pwd`/flutter/bin"
-      script:
-        - ./flutter/bin/flutter build ios --no-codesign
+        - ./flutter/bin/flutter build apk --debug
+      after_script:
+        - ruby scripts/upload_to_s3.rb
 
 cache:
   directories:
     - $HOME/.pub-cache
+
+
